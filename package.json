@@ -6,7 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npm run -s lint:eslint && npm run -s lint:prettier && npm run -s lint:ts",
+    "lint:eslint": "eslint --ext=.js,.jsx,.mjs,.ts,.tsx --ignore-path .gitignore",
+    "lint:prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config .prettierrc",
+    "lint:ts": "tsc",
+    "pre-commit": "lint-staged && npm run -s lint:ts",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.json": "npm run -s lint:prettier -- --check",
+    "src/**/*.@(jsx|js|ts|tsx)": [
+      "npm run -s lint:prettier -- --check",
+      "npm run -s lint:eslint"
+    ],
+    "*.css": "npm run -s lint:prettier -- --check",
+    "*.@(yaml|yml)": "npm run -s lint:prettier -- --check"
   },
   "dependencies": {
     "@next/font": "13.1.2",
@@ -16,8 +30,17 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "next": "13.1.2",
+    "prettier": "^2.8.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "ts-node": "^10.9.1"
   }
 }
