@@ -1,0 +1,16 @@
+volumes:
+  pgdata:
+
+services:
+  db:
+    image: postgres:13.3-alpine
+    container_name: postgres-alias
+    ports:
+      - '6666:5432'
+    env_file:
+      - .env.local
+    environment:
+      DB_HOST: 127.0.0.1
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+    restart: always
