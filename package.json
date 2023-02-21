@@ -21,7 +21,11 @@
     "prepare": "husky install",
     "codegen": "apollo client:codegen --target typescript",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "e2e": "start-server-and-test dev http://localhost:3333 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3001 \"cypress run --e2e\"",
+    "component": "cypress open --component",
+    "component:headless": "cypress run --component"
   },
   "lint-staged": {
     "*.json": "npm run -s lint:prettier -- --check",
@@ -69,10 +73,12 @@
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@types/micro-cors": "^0.1.2",
+    "cypress": "^12.6.0",
     "dotenv": "^16.0.3",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
-    "prettier-plugin-tailwindcss": "^0.2.1"
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "start-server-and-test": "^1.15.4"
   },
   "engines": {
     "node": "16.x"
