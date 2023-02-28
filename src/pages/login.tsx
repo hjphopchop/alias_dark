@@ -4,6 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import authPopup from '@/common/utils/authPopup';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { LOGIN } from '@/common/routes';
 
 const Login = (): React.ReactElement => {
   const sesion = useSession();
@@ -36,5 +37,7 @@ const Login = (): React.ReactElement => {
     </>
   );
 };
+
+Login.auth = LOGIN.auth;
 
 export default Login;

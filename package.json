@@ -11,6 +11,7 @@
     "build:types": "npm run -s build:prisma && npm run -s build:nexus && npm run -s build:apollo",
     "start": "next start",
     "db:migrate:dev": "dotenv -c -- prisma migrate dev",
+    "db:studio": "dotenv -e .env.local -- npx prisma studio -p 3322",
     "docker:down": "docker compose down",
     "docker:up": "docker compose up -d",
     "lint": "npm run -s lint:eslint && npm run -s lint:prettier && npm run -s lint:ts",

@@ -27,7 +27,7 @@ export const createApolloClient = (): ApolloClient<NormalizedCacheObject> =>
       },
     }),
     link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_HOST + GRAPHQL_V1_API.path, //uri: 'http://ics.mipt.ru:3333' + GRAPHQL_V1_API.path,
+      uri: process.env.NEXT_PUBLIC_HOST + GRAPHQL_V1_API.path,
     }),
     ssrMode: typeof window === 'undefined',
   });

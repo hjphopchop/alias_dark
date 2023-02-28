@@ -11,3 +11,15 @@ export const GRAPHQL_V1_API: Route = {
   name: 'GraphQL API',
   path: '/api/v1/graphql',
 };
+
+export const LOGIN: Route = {
+  auth: false,
+  name: 'Login',
+  path: '/login',
+};
+
+export const HOME: Route = {
+  auth: true,
+  name: 'Home',
+  path: '/',
+};
