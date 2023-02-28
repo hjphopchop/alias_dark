@@ -7,8 +7,10 @@ import { useEffect } from 'react';
 const Home = () => {
   return (
     <>
-      <div>rrrrr </div>
-      <button onClick={() => signOut()}>exit</button>
+      <div className="h-screen w-full bg-black text-white">
+        <div>rrrrr </div>
+        <button onClick={() => signOut({ redirect: false })}>exit</button>
+      </div>
     </>
   );
 };

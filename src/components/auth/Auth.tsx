@@ -29,7 +29,7 @@ const Auth = ({ children, loginUrl }: AuthProps): React.ReactElement => {
   }, [isAuth, loading, loginUrl, router]);
 
   if (loading || !isAuth) {
-    return <div />;
+    return <div className="bg-black"> </div>;
   }
   return (
     <>
