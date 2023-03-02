@@ -1,4 +1,4 @@
-import logo from '@/assets/img/logo.png';
+import logo from '@/assets/img/logo3.png';
 import logo2 from '@/assets/img/The_Scream.svg';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
@@ -29,7 +29,7 @@ const Login = (): React.ReactElement => {
         <Image
           src={logo}
           alt={'logo'}
-          className="rounded-xl "
+          className=" "
           width={500}
           height={500}
           loading={'lazy'}

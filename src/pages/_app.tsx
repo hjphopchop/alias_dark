@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { AnimatePresence } from 'framer-motion';
 import { SessionProvider } from 'next-auth/react';
-import { ReactElement, ReactNode } from 'react';
+import { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { AppInitialState, useApollo } from '@/graphql/client';
 import { Session } from 'next-auth';
 import Auth, { AuthProps } from '@/components/auth/Auth';
@@ -36,9 +36,11 @@ const App = ({
       <ApolloProvider client={client}>
         <AnimatePresence mode="wait" initial={true}>
           {Component.auth ? (
-            <Auth {...Component.auth}>{<Component {...pageProps} />}</Auth>
+            <Auth {...Component.auth}>
+              {getLayout(<Component {...pageProps} />)}
+            </Auth>
           ) : (
-            <Component {...pageProps} />
+            getLayout(<Component {...pageProps} />)
           )}
         </AnimatePresence>
       </ApolloProvider>
