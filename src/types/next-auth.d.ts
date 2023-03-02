@@ -6,12 +6,11 @@ export interface AuthSessionUser {
   id: string;
   image: string | null;
   name: string | null;
-  role: Role;
   tid: string | null;
 }
 
 declare module 'next-auth' {
-  interface Session {
+  export interface Session {
     user?: AuthSessionUser;
   }
 
