@@ -23,3 +23,9 @@ export const HOME: Route = {
   name: 'Home',
   path: '/',
 };
+
+export const SETTINGS: Route = {
+  auth: true,
+  name: 'Settings',
+  path: '/settings',
+};

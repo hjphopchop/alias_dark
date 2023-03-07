@@ -82,7 +82,7 @@ const Header = () => {
                 <Link href={'/'}>Правила</Link>{' '}
               </motion.li>
               <motion.li variants={itemVariants}>
-                <Link href={'/'}> Настройки</Link>
+                <Link href={'/settings'}> Настройки</Link>
               </motion.li>
               <motion.li variants={itemVariants}>
                 {' '}
