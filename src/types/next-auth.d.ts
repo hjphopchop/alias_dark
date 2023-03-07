@@ -6,7 +6,6 @@ export interface AuthSessionUser {
   id: string;
   image: string | null;
   name: string | null;
-  tid: string | null;
 }
 
 declare module 'next-auth' {

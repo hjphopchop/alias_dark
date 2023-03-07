@@ -5,7 +5,7 @@ module.exports = {
       // Only exists when npm run build:nexus or npm run dev is run
       // and a GraphQL request made.
       localSchemaFile: '.generated/graphql/schema.graphql',
-      name: 'spa-graphql',
+      name: 'alias-graphql',
     },
     tagName: 'gql',
   },

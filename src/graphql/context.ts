@@ -1,10 +1,10 @@
 import { getSession } from 'next-auth/react';
 
-import prisma from '../../src/prisma/connection';
+import prisma from 'src/prisma/connection';
 
 import type { PrismaClient } from '@prisma/client';
 import type { MicroRequest } from 'apollo-server-micro/src/types';
-import type { AuthSessionUser } from '../../src/types/next-auth';
+import type { AuthSessionUser } from 'src/types/next-auth';
 
 export type AppGqlContext = {
   prisma: PrismaClient;

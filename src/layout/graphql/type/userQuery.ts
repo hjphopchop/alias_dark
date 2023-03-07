@@ -1,3 +1,4 @@
+import { isAuthenticated } from '@/common/utils/isAuthenticated';
 import { extendType } from 'nexus';
 import { User } from 'nexus-prisma';
 

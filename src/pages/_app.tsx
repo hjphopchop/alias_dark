@@ -4,7 +4,7 @@ import { SessionProvider } from 'next-auth/react';
 import { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { AppInitialState, useApollo } from '@/graphql/client';
 import { Session } from 'next-auth';
-import Auth, { AuthProps } from '@/components/auth/Auth';
+import Auth, { AuthProps } from '@/modules/auth/Auth';
 import { NextPage } from 'next';
 import { ApolloProvider } from '@apollo/client';
 
@@ -28,7 +28,6 @@ const App = ({
   Component,
   pageProps: { session, initialApolloState, ...pageProps },
 }: AppPropsWithExtra<NextPagePropsExtra>): React.ReactElement => {
-  console.log(session);
   const client = useApollo(initialApolloState);
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
