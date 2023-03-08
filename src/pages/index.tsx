@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const Home = () => {
+  console.log('я отрисовался))');
   return (
     <>
       <div>4443333</div>
