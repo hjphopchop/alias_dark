@@ -29,3 +29,9 @@ export const SETTINGS: Route = {
   name: 'Settings',
   path: '/settings',
 };
+
+export const CATEGORIES: Route = {
+  auth: true,
+  name: 'Categories',
+  path: '/categories',
+};

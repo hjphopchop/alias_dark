@@ -78,6 +78,9 @@ const Header = () => {
               style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
             >
               <motion.li variants={itemVariants}>
+                <Link href={'/categories'}> Категории</Link>
+              </motion.li>
+              <motion.li variants={itemVariants}>
                 {' '}
                 <Link href={'/'}>Правила</Link>{' '}
               </motion.li>
