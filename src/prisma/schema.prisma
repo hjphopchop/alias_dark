@@ -87,9 +87,7 @@ model Question {
 
 model Image {
   id         String   @id @default(uuid())
-  publicId   String   @unique
-  format     String
-  version    String
+  url       String
   categoryId String   @unique
   category   Category @relation(fields: [categoryId], references: [id])
   createdAt  DateTime @default(now())
