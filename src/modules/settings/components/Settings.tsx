@@ -39,7 +39,7 @@ const Settings = () => {
   return (
     <>
       {!loading && (
-        <div className="mx-12 flex h-full flex-col">
+        <div className="flex h-full flex-col">
           <h2 className="text-xl">Настройки</h2>
           <form
             className="flex max-w-[600px] flex-col gap-5"
