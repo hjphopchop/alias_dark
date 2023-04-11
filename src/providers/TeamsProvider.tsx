@@ -30,9 +30,20 @@ const TeamsProvider = ({ children }: any) => {
     setTeams([...teams, newTeam]);
   };
 
+  const changePoints = (teamTitle: any, changeValue: any) => {
+    const updatedTeams = teams.map((team: any) => {
+      if (team.title === teamTitle) {
+        return { ...team, point: team.point + changeValue };
+      }
+      return team;
+    });
+    setTeams(updatedTeams);
+  };
+
   const contextValue = {
     teams,
     addTeam,
+    changePoints,
   };
   return (
     <TeamsContext.Provider value={contextValue}>
