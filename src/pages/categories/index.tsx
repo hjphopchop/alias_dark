@@ -2,10 +2,12 @@ import { CATEGORIES } from '@/common/routes';
 import SearchInput from '@/common/utils/components/SearchInput/SearchInput';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
 import CategoriesList from '@/modules/categories/components/CategoriesList';
+import UploadImage from '@/modules/categories/components/UploadImage';
 import GetCategories from '@/modules/categories/graphql/query/GetCategories';
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
 import React, { ChangeEvent, useCallback, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const CategoriesPage = () => {
   const [searchCategory, setSearchCategory] = useState<string>('');
@@ -13,6 +15,7 @@ const CategoriesPage = () => {
   const handleSearch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchCategory(event.target.value);
   }, []);
+
   const { data, loading } = useQuery(GetCategories);
   if (loading) {
     return <div>Loading...</div>;
@@ -26,6 +29,7 @@ const CategoriesPage = () => {
       </div>
 
       <CategoriesList categories={data.categories.data} />
+      <UploadImage />
     </div>
   );
 };

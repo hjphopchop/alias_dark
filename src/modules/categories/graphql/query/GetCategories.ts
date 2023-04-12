@@ -7,11 +7,7 @@ export default gql`
         id
         title
         oficial
-        image {
-          id
-          url
-          categoryId
-        }
+        imageId
         questions {
           id
           title

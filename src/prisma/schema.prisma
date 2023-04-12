@@ -74,7 +74,7 @@ model Category {
   title       String     @unique
   description String?
   oficial     Boolean    @default(false)
-  image       Image?
+  imageId      String
   questions   Question[]
 }
 
@@ -88,8 +88,12 @@ model Question {
 model Image {
   id         String   @id @default(uuid())
   url       String
-  categoryId String   @unique
-  category   Category @relation(fields: [categoryId], references: [id])
+  type      ImageType @default(CATEGORY_COVER)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+enum ImageType {
+  CATEGORY_COVER
+  USER_AVATAR
 }

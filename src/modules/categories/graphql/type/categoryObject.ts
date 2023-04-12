@@ -5,7 +5,7 @@ export default objectType({
   definition(t) {
     t.field(Category.id);
     t.field(Category.title);
-    t.nullable.field(Category.image);
+    t.field(Category.imageId);
     t.field(Category.questions);
     t.field(Category.oficial);
   },
