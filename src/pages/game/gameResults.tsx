@@ -1,13 +1,23 @@
 import { RESULTS } from '@/common/routes';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const gameResultsPage = () => {
-  return <div>gameResult</div>;
+const GameResultsPage = () => {
+  const router = useRouter();
+  const newRound = () => {
+    router.push('/game');
+  };
+  return (
+    <>
+      <div>gameResult</div>
+      <button onClick={newRound}>Продолжить</button>
+    </>
+  );
 };
 
-gameResultsPage.auth = RESULTS.auth;
+GameResultsPage.auth = RESULTS.auth;
 
-gameResultsPage.getLayout = getLayout;
+GameResultsPage.getLayout = getLayout;
 
-export default gameResultsPage;
+export default GameResultsPage;

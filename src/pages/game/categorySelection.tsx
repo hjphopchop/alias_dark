@@ -1,13 +1,23 @@
 import { CATEGORYSELECTION } from '@/common/routes';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const categorySelectionPage = () => {
-  return <div>categorySelection</div>;
+const CategorySelectionPage = () => {
+  const router = useRouter();
+  const startGame = () => {
+    router.push('/game');
+  };
+
+  return (
+    <>
+      <button onClick={startGame}> Продолжить</button>
+    </>
+  );
 };
 
-categorySelectionPage.auth = CATEGORYSELECTION.auth;
+CategorySelectionPage.auth = CATEGORYSELECTION.auth;
 
-categorySelectionPage.getLayout = getLayout;
+CategorySelectionPage.getLayout = getLayout;
 
-export default categorySelectionPage;
+export default CategorySelectionPage;
