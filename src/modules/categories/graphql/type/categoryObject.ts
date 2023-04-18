@@ -6,6 +6,7 @@ export default objectType({
     t.field(Category.id);
     t.field(Category.title);
     t.field(Category.imageId);
+    t.field(Category.description);
     t.field(Category.questions);
     t.field(Category.oficial);
   },

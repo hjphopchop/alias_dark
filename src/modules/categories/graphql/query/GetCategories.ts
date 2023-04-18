@@ -8,6 +8,7 @@ export default gql`
         title
         oficial
         imageId
+        description
         questions {
           id
           title

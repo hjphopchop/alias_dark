@@ -4,7 +4,7 @@ import axios from 'axios';
 import { set } from 'cypress/types/lodash';
 import Image from 'next/image';
 
-const UploadImage = () => {
+const CreateCategoryForm = ({ onClose }: any) => {
   const {
     register,
     handleSubmit,
@@ -61,17 +61,26 @@ const UploadImage = () => {
         {/* register your input into the hook by invoking the "register" function */}
 
         {/* include validation with required or other standard HTML validation rules */}
+        <input
+          {...register('title', { required: true })}
+          placeholder="Введите название"
+        />
+        <input
+          {...register('description', { required: true })}
+          placeholder="Введите описание"
+        />
+        <textarea placeholder="Введите список слов через запятую" />
         <input type="file" {...register('image', { required: true })} />
         {/* errors will return when field validation fails  */}
         {errors.exampleRequired && <span>This field is required</span>}
 
         <input type="submit" />
+        {createObjectURL && (
+          <Image src={createObjectURL} alt="" width={200} height={200} />
+        )}
       </form>
-      {createObjectURL && (
-        <Image src={createObjectURL} alt="" width={200} height={200} />
-      )}
     </>
   );
 };
 
-export default UploadImage;
+export default CreateCategoryForm;
