@@ -1,66 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import axios from 'axios';
-import { set } from 'cypress/types/lodash';
+import { get, set } from 'cypress/types/lodash';
 import Image from 'next/image';
+import ImageInput from './ImageInput';
+import { useMutation } from '@apollo/client';
+import CreateCategory from '../graphql/mutation/CreateCategory';
 
 const CreateCategoryForm = ({ onClose }: any) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const [createObjectURL, setCreateObjectURL] = useState<string | undefined>(
-    undefined
-  );
-  const [imageId, setImageId] = useState<string | undefined>(undefined);
+  const { register, handleSubmit } = useForm();
+
+  const [create] = useMutation(CreateCategory);
+  const [testImg, setTestImg] = useState('');
+  const onChange = (e: any) => {
+    console.log('refresh');
+    setTestImg(URL.createObjectURL(e.target.files[0]));
+  };
   const onSubmit = async (data: any) => {
-    console.log(data.image[0]);
     const body = new FormData();
+    console.log(data);
     body.append('theFiles', data.image[0]);
     const config = {
       headers: { 'content-type': 'multipart/form-data' },
-      onUploadProgress: (event: any) => {
-        console.log(
-          `Current progress:`,
-          Math.round((event.loaded * 100) / event.total)
-        );
-      },
     };
     await axios
       .post('/api/images/upload', body, config)
-      .then((data) => {
+      .then((imageData) => {
         console.log('Успех');
-        console.log(data.data.data.id);
-        setImageId(data.data.data.id);
+        create({
+          variables: {
+            categoryData: {
+              title: data.title,
+              description: data.description,
+              imageId: imageData.data.data.id,
+              oficial: true,
+            },
+            questionData: [
+              {
+                title: '1',
+              },
+              { title: '2' },
+            ],
+          },
+        });
       })
+
+      .then(() => onClose())
       .catch((e) => {
         console.log('error', e);
       });
   };
 
-  useEffect(() => {
-    if (imageId) {
-      axios
-        .get('api/images/download', {
-          params: { id: imageId },
-        })
-        .then((imageData: any) => {
-          console.log(imageData);
-          setCreateObjectURL('data:image/png;base64,' + imageData.data.file);
-        });
-    }
-  }, [imageId]);
   return (
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center justify-center bg-pink-800 text-lg text-black"
       >
-        {/* register your input into the hook by invoking the "register" function */}
-
-        {/* include validation with required or other standard HTML validation rules */}
         <input
           {...register('title', { required: true })}
           placeholder="Введите название"
@@ -69,16 +65,18 @@ const CreateCategoryForm = ({ onClose }: any) => {
           {...register('description', { required: true })}
           placeholder="Введите описание"
         />
-        <textarea placeholder="Введите список слов через запятую" />
-        <input type="file" {...register('image', { required: true })} />
-        {/* errors will return when field validation fails  */}
-        {errors.exampleRequired && <span>This field is required</span>}
+        <textarea
+          {...register('questions', { required: true })}
+          placeholder="Введите список слов через запятую"
+        />
 
+        <ImageInput
+          {...register('image', { required: true })}
+          onChange={onChange}
+        />
         <input type="submit" />
-        {createObjectURL && (
-          <Image src={createObjectURL} alt="" width={200} height={200} />
-        )}
       </form>
+      {testImg && <Image src={testImg} width={200} height={200} alt="r" />}
     </>
   );
 };
