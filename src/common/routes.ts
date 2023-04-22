@@ -30,8 +30,31 @@ export const SETTINGS: Route = {
   path: '/settings',
 };
 
+export const GAME: Route = {
+  auth: true,
+  name: 'Game',
+  path: '/game',
+};
+
+export const TEAMS: Route = {
+  auth: true,
+  name: 'Teams',
+  path: '/game/teams',
+};
+
+export const RESULTS: Route = {
+  auth: true,
+  name: 'Results',
+  path: '/game/gameResults',
+};
+
 export const CATEGORIES: Route = {
   auth: true,
   name: 'Categories',
   path: '/categories',
+};
+export const CATEGORYSELECTION: Route = {
+  auth: true,
+  name: 'CategorySelection',
+  path: '/game/categorySelection',
 };

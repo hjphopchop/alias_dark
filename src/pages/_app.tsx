@@ -7,6 +7,7 @@ import { Session } from 'next-auth';
 import Auth, { AuthProps } from '@/modules/auth/Auth';
 import { NextPage } from 'next';
 import { ApolloProvider } from '@apollo/client';
+import TeamsProvider from '@/providers/TeamsProvider';
 
 type NextPagePropsExtra = {
   initialApolloState: AppInitialState;
@@ -34,13 +35,15 @@ const App = ({
     <SessionProvider session={session}>
       <ApolloProvider client={client}>
         <AnimatePresence mode="wait" initial={true}>
-          {Component.auth ? (
-            <Auth {...Component.auth}>
-              {getLayout(<Component {...pageProps} />)}
-            </Auth>
-          ) : (
-            getLayout(<Component {...pageProps} />)
-          )}
+          <TeamsProvider>
+            {Component.auth ? (
+              <Auth {...Component.auth}>
+                {getLayout(<Component {...pageProps} />)}
+              </Auth>
+            ) : (
+              getLayout(<Component {...pageProps} />)
+            )}
+          </TeamsProvider>
         </AnimatePresence>
       </ApolloProvider>
     </SessionProvider>
