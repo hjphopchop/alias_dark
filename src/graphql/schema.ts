@@ -2,6 +2,7 @@ import path from 'path';
 import { connectionPlugin, fieldAuthorizePlugin, makeSchema } from 'nexus';
 import * as usersTypes from 'src/layout/graphql/type';
 import * as settingsTypes from 'src/modules/settings/graphql/type';
+import * as categoriesTypes from 'src/modules/categories/graphql/type';
 import NexusPrismaScalars from 'nexus-prisma/scalars';
 
 const generatedDir = path.join(process.cwd(), '.generated', 'graphql');
@@ -21,6 +22,6 @@ const schema = makeSchema({
       includeNodesField: true,
     }),
   ],
-  types: [NexusPrismaScalars, usersTypes, settingsTypes],
+  types: [NexusPrismaScalars, usersTypes, settingsTypes, categoriesTypes],
 });
 export default schema;

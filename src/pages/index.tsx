@@ -7,10 +7,12 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 const Home = () => {
+  console.log('я отрисовался))');
   const router = useRouter();
   const startGame = () => {
     router.push('/game/teams');
   };
+
   return (
     <>
       <div>4443333</div>

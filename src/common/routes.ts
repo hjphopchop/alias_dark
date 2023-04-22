@@ -48,6 +48,11 @@ export const RESULTS: Route = {
   path: '/game/gameResults',
 };
 
+export const CATEGORIES: Route = {
+  auth: true,
+  name: 'Categories',
+  path: '/categories',
+};
 export const CATEGORYSELECTION: Route = {
   auth: true,
   name: 'CategorySelection',
