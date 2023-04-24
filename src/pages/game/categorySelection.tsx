@@ -1,17 +1,23 @@
 import { CATEGORYSELECTION } from '@/common/routes';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
-import { useRouter } from 'next/router';
+import CategoriesList from '@/modules/categories/components/CategoriesList';
+import GetCategories from '@/modules/categories/graphql/query/GetCategories';
+import CategoriesProvider, {
+  useCategoryContext,
+} from '@/providers/CategoriesProvider';
+import { useQuery } from '@apollo/client';
 import React from 'react';
 
 const CategorySelectionPage = () => {
-  const router = useRouter();
-  const startGame = () => {
-    router.push('/game');
-  };
-
+  const { data, loading } = useQuery(GetCategories);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
-      <button onClick={startGame}> Продолжить</button>
+      <CategoriesProvider>
+        <CategoriesList categories={data.categories.data} selecteable />
+      </CategoriesProvider>
     </>
   );
 };
