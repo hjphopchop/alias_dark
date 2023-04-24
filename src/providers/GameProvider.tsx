@@ -1,3 +1,4 @@
+import { error } from 'console';
 import React, {
   createContext,
   useContext,
@@ -26,6 +27,14 @@ const GameProvider = ({ children }: any) => {
     localStorage.setItem('words', JSON.stringify(words));
   }, [words]);
 
+  const addWords = (newWords: Array<string>) => {
+    try {
+      setWords(newWords);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
   const removeWord = (id: any) => {
     try {
       console.log('delete');
@@ -41,6 +50,7 @@ const GameProvider = ({ children }: any) => {
 
   const contextValue = {
     words,
+    addWords,
     removeWord,
   };
   return (

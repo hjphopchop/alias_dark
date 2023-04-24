@@ -2,6 +2,7 @@ import { GAME } from '@/common/routes';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
 import { GameSession } from '@/modules/game/components/GameSession';
 import PlayersTurn from '@/modules/game/components/PlayersTurn/PlayersTurn';
+import CategoriesProvider from '@/providers/CategoriesProvider';
 import GameProvider from '@/providers/GameProvider';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import { useRouter } from 'next/router';
@@ -28,13 +29,12 @@ const GamePage = () => {
         <>
           <div>Сама Игра</div>
           <div>Игрок {teams[playerIndex]?.title}</div>
-          <GameProvider>
-            <GameSession
-              setPlayerIndex={setPlayerIndex}
-              playerIndex={playerIndex}
-              teams={teams}
-            />
-          </GameProvider>
+
+          <GameSession
+            setPlayerIndex={setPlayerIndex}
+            playerIndex={playerIndex}
+            teams={teams}
+          />
         </>
       )}
     </div>
