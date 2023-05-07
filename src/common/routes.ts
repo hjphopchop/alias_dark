@@ -58,3 +58,9 @@ export const CATEGORYSELECTION: Route = {
   name: 'CategorySelection',
   path: '/game/categorySelection',
 };
+
+export const DIRTYADDIMAGES: Route = {
+  auth: true,
+  name: 'DirtyAddImages',
+  path: '/dirtyAddImages',
+};

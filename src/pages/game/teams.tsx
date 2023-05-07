@@ -1,7 +1,6 @@
 import { TEAMS } from '@/common/routes';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
 import Image from 'next/image';
-import mouse from 'src/assets/img/mouse.svg';
 import React, { useEffect, useState } from 'react';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import CreateTeamForm from '@/modules/game/components/forms/CreateTeamForm';
@@ -9,16 +8,9 @@ import { useRouter } from 'next/router';
 
 const test = ['бобры', 'мыши', 'желуди'];
 const TeamsPage = () => {
-  const { teams, addTeam }: any = useTeamsContext();
+  const { teams, deleteTeam }: any = useTeamsContext();
   console.log(teams);
-  const [isAddTeam, setIsAddTeam] = useState<boolean>(false);
   const [isShowForm, setIsShowForm] = useState(false);
-
-  useEffect(() => {
-    if (isAddTeam === true) {
-      setIsAddTeam(false);
-    }
-  }, [isAddTeam]);
 
   const router = useRouter();
 
@@ -31,23 +23,35 @@ const TeamsPage = () => {
     <>
       <div className="px-[50px]">
         <h3 className="text-2xl"> Выбор команд</h3>
-        <ul className="flex items-center gap-6">
+        <ul className="flex flex-wrap justify-start gap-10 pt-10">
           {teams.map((item: any, index: any) => (
-            <li key={index} className="">
-              <div className="flex h-[200px] w-[200px] items-center justify-center rounded-full bg-[#ffffff]">
+            <li key={index} className=" flex flex-col items-center ">
+              <div className="relative flex h-[250px] w-[200px] items-end justify-center  overflow-hidden rounded-b-2xl bg-green-400">
                 <Image
-                  src={mouse}
-                  width={150}
-                  height={150}
-                  className="object-cover object-center"
-                  alt="mouse"
+                  src={'data:image/png;base64,' + item?.image?.file}
+                  width={190}
+                  height={190}
+                  className="absolute bottom-[-5px]"
+                  alt="avatar"
                 />
+                <button
+                  className="absolute top-0 right-0"
+                  onClick={() => deleteTeam(item.id)}
+                >
+                  {' '}
+                  Удалить
+                </button>
               </div>
               <span className=" ">{item.title}</span>
             </li>
           ))}
-          <li className="flex min-h-[100px] min-w-[100px] items-center justify-center rounded-full bg-pink-500">
-            <button onClick={() => setIsShowForm(true)}>+</button>
+          <li className="flex h-[250px] w-[200px] items-center gap-2 rounded-b-xl bg-green-600">
+            <button
+              className="h-[250px] w-[200px] rotate-6 rounded-b-xl bg-green-400"
+              onClick={() => setIsShowForm((prev) => !prev)}
+            >
+              +
+            </button>
           </li>
         </ul>
         <button
@@ -58,9 +62,7 @@ const TeamsPage = () => {
           Дальше
         </button>
       </div>
-      {isShowForm && (
-        <CreateTeamForm addTeam={addTeam} onClose={setIsShowForm} />
-      )}
+      {isShowForm && <CreateTeamForm onClose={setIsShowForm} />}
     </>
   );
 };

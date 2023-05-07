@@ -30,6 +30,12 @@ const TeamsProvider = ({ children }: any) => {
     setTeams([...teams, newTeam]);
   };
 
+  const deleteTeam = (id: string) => {
+    setTeams((prevItems: any) =>
+      prevItems.filter((item: any) => item.id !== id)
+    );
+  };
+
   const changePoints = (teamTitle: any, changeValue: any) => {
     const updatedTeams = teams.map((team: any) => {
       if (team.title === teamTitle) {
@@ -43,6 +49,7 @@ const TeamsProvider = ({ children }: any) => {
   const contextValue = {
     teams,
     addTeam,
+    deleteTeam,
     changePoints,
   };
   return (
