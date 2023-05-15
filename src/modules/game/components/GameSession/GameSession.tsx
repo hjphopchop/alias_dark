@@ -4,18 +4,23 @@ import { composeMiddlewareFns } from 'nexus/dist/plugin';
 import { useGameContext } from '@/providers/GameProvider';
 import PlayersTurn from '../PlayersTurn/PlayersTurn';
 import { useTeamsContext } from '@/providers/TeamsProvider';
+import { useQuery } from '@apollo/client';
+import GetSettings from '@/modules/settings/graphql/query/GetSettings';
 
-const GameSession = ({ setPlayerIndex, playerIndex }: any) => {
+const GameSession = ({ setPlayerIndex, playerIndex, settingsData }: any) => {
   const { words, removeWord }: any = useGameContext();
   const { teams, changePoints }: any = useTeamsContext();
   const [isEndGame, setIsEndGame] = useState(false);
   const [isEndTimer, setIsEndTimer] = useState(false);
 
-  console.log('player', playerIndex);
+  console.log(settingsData);
 
   const skipWord = () => {
     removeWord(words[words.length - 1]);
     isEndTimer && setPlayerIndex((prev: number) => ++prev);
+    if (settingsData.takeAwayPoints) {
+      changePoints(teams[playerIndex].title, -1);
+    }
     isEndTimer && setIsEndGame(false);
   };
   const nextWord = () => {
