@@ -16,7 +16,7 @@ const CategoriesItem = ({ item, selecteable = false }: any) => {
       .then(async ({ data }) => {
         setObjectUrl('data:image/png;base64,' + data.file);
       });
-  }, []);
+  }, [item.imageId]);
   const itemClasses = classnames('relative', {
     'border-r-4 border-spacing-0 border-collapse border-box border-pink-500':
       isSelected,

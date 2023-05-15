@@ -62,7 +62,9 @@ const TeamsPage = () => {
           Дальше
         </button>
       </div>
-      {isShowForm && <CreateTeamForm onClose={setIsShowForm} />}
+      {isShowForm && (
+        <CreateTeamForm isActive={isShowForm} onClose={setIsShowForm} />
+      )}
     </>
   );
 };

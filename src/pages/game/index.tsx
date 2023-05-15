@@ -10,26 +10,26 @@ import React, { useEffect, useState } from 'react';
 
 const GamePage = () => {
   const [playerIndex, setPlayerIndex] = useState<number>(0);
-  const [isEndRound, setIsEndRound] = useState(false);
+  const [isEndRound, setIsEndRound] = useState(true);
   const { teams }: any = useTeamsContext();
 
   const router = useRouter();
   console.log(teams);
-  console.log('player', playerIndex);
   useEffect(() => {
+    console.log('Это работает');
+    console.log('teams length', teams.length);
+    console.log('index', playerIndex);
     if (teams.length === playerIndex) {
-      setIsEndRound(true);
+      console.log('выполнился конец');
+      setIsEndRound((prev) => !prev);
       router.push('game/gameResults');
     }
-  }, [playerIndex, router, teams.length]);
+  }, [teams.length, router, playerIndex]);
 
   return (
     <div>
-      {!isEndRound && (
+      {isEndRound && (
         <>
-          <div>Сама Игра</div>
-          <div>Игрок {teams[playerIndex]?.title}</div>
-
           <GameSession
             setPlayerIndex={setPlayerIndex}
             playerIndex={playerIndex}
