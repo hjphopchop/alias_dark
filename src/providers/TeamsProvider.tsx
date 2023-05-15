@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const TeamsContext = createContext({});
 
@@ -39,9 +33,17 @@ const TeamsProvider = ({ children }: any) => {
   const changePoints = (teamTitle: any, changeValue: any) => {
     const updatedTeams = teams.map((team: any) => {
       if (team.title === teamTitle) {
-        return { ...team, point: team.point + changeValue };
+        return { ...team, points: team.points + changeValue };
       }
       return team;
+    });
+    setTeams(updatedTeams);
+  };
+
+  const resetPoints = () => {
+    const updatedTeams = teams.map((team: any) => {
+      team.points = 0;
+      return { ...team };
     });
     setTeams(updatedTeams);
   };
@@ -51,6 +53,7 @@ const TeamsProvider = ({ children }: any) => {
     addTeam,
     deleteTeam,
     changePoints,
+    resetPoints,
   };
   return (
     <TeamsContext.Provider value={contextValue}>

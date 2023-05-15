@@ -13,8 +13,6 @@ const GameSession = ({ setPlayerIndex, playerIndex, settingsData }: any) => {
   const [isEndGame, setIsEndGame] = useState(false);
   const [isEndTimer, setIsEndTimer] = useState(false);
 
-  console.log(settingsData);
-
   const skipWord = () => {
     removeWord(words[words.length - 1]);
     isEndTimer && setPlayerIndex((prev: number) => ++prev);
@@ -52,7 +50,10 @@ const GameSession = ({ setPlayerIndex, playerIndex, settingsData }: any) => {
             </button>
           </div>
           <div className="absolute top-0 right-0">
-            <Timer setIsEndTimer={setIsEndTimer} initialTime={10} />
+            <Timer
+              setIsEndTimer={setIsEndTimer}
+              initialTime={settingsData.roundTime}
+            />
           </div>
         </div>
       ) : (

@@ -1,19 +1,23 @@
+import { useGameContext } from '@/providers/GameProvider';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-const GameResult = ({ teams, pointToWin }: any) => {
+const GameResult = ({ teams, pointToWin, resetPoints }: any) => {
   const router = useRouter();
   const [isEndGame, setIsEndGame] = useState(false);
   const newRound = () => {
     router.push('/game');
   };
 
-  console.log(teams);
+  const newGame = () => {
+    router.push('/game/teams');
+    resetPoints();
+  };
   const headers = ['Место', 'Команда', 'Очки'];
   useEffect(() => {
-    teams.sort((a: any, b: any) => b.point - a.point);
-    if (teams[0].point >= pointToWin) {
+    teams.sort((a: any, b: any) => b.points - a.points);
+    if (teams[0].points >= pointToWin) {
       setIsEndGame(true);
     }
   }, [teams, pointToWin]);
@@ -39,14 +43,14 @@ const GameResult = ({ teams, pointToWin }: any) => {
                 {item.title}
               </div>
               <div className="flex items-center  px-3 py-3 text-[16px] font-[400] leading-[17px]  ">
-                {item.point}
+                {item.points}
               </div>
             </>
           ))}
         </div>
         {isEndGame ? (
           <>
-            <button onClick={newRound}>Начать новую игру</button>
+            <button onClick={newGame}>Начать новую игру</button>
           </>
         ) : (
           <>

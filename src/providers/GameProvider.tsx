@@ -1,11 +1,4 @@
-import { error } from 'console';
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const GameContext = createContext({});
 
@@ -37,12 +30,9 @@ const GameProvider = ({ children }: any) => {
 
   const removeWord = (id: any) => {
     try {
-      console.log('delete');
-      console.log(id);
       setWords((prevItems: any) =>
         prevItems.filter((item: any) => item !== id)
       );
-      console.log('del', words);
     } catch (error) {
       console.log('error', error);
     }
