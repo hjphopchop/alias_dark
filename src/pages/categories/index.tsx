@@ -1,5 +1,5 @@
 import { CATEGORIES } from '@/common/routes';
-import SearchInput from '@/common/utils/components/SearchInput/SearchInput';
+import SearchInput from '@/common/components/SearchInput/SearchInput';
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
 import CategoriesList from '@/modules/categories/components/CategoriesList';
 import CreateCategoryForm from '@/modules/categories/components/CreateCategoryForm';

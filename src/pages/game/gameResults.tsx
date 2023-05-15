@@ -15,13 +15,16 @@ const GameResultsPage = () => {
       userId: session?.data?.user?.id,
     },
   });
-  const { teams }: any = useTeamsContext();
-  console.log(session?.data?.user?.id);
+  const { teams, resetPoints }: any = useTeamsContext();
   const pointToWin = data?.settings[0]?.pointToWin;
 
   return (
     <>
-      <GameResult teams={teams} pointToWin={pointToWin} />
+      <GameResult
+        teams={teams}
+        pointToWin={pointToWin}
+        resetPoints={resetPoints}
+      />
     </>
   );
 };

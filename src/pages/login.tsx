@@ -2,7 +2,7 @@ import logo from '@/assets/img/logo3.png';
 import logo2 from '@/assets/img/The_Scream.svg';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
-import authPopup from '@/common/utils/authPopup';
+import authPopup from '@/common/components/authPopup';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LOGIN } from '@/common/routes';
