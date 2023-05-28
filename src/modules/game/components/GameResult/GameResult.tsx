@@ -21,6 +21,7 @@ const GameResult = ({ teams, pointToWin, resetPoints }: any) => {
       setIsEndGame(true);
     }
   }, [teams, pointToWin]);
+
   return (
     <>
       <div className="flex h-full flex-col items-center  gap-10 ">
