@@ -10,10 +10,10 @@ type MenuItemProps = {
 
 const MenuItem = ({ route }: MenuItemProps) => {
   const [isHover, setHover] = useState(false);
-  const variants = {
-    hover: { rotate: 20 },
-    noHover: { rotate: 0 },
-  };
+  //   const variants = {
+  //     hover: { rotate: 20 },
+  //     noHover: { rotate: 0 },
+  //   };
   return (
     <li
       onMouseEnter={() => setHover(true)}
@@ -23,7 +23,7 @@ const MenuItem = ({ route }: MenuItemProps) => {
       <Link href={route.link} className="flex  items-center gap-3">
         <motion.span
           animate={isHover ? 'hover' : 'noHover'}
-          variants={variants}
+          variants={route.variants}
         >
           <route.icon />
         </motion.span>

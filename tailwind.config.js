@@ -8,7 +8,7 @@ module.exports = {
       fontFamily: {
         sofia: ['var(--font-sofia)'],
         zaychik: ['var(--font-zaychik)'],
-      }
+      },
     },
   },
   plugins: [],
