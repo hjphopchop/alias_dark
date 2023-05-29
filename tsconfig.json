@@ -16,7 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@public/*": ["./public/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".generated/**/*.ts"],
@@ -26,7 +27,8 @@
       "module": "CommonJS",
       "baseUrl": ".",
       "paths": {
-        "@/*": ["src/*"]
+        "@/*": ["src/*"],
+        "@public/*": ["public/*"]
       }
     }
   }
