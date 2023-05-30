@@ -32,7 +32,7 @@ export const menuRoutes: MenuRoute[] = [
     },
   },
   {
-    title: 'Настроки',
+    title: 'Настройки',
     link: '/settings',
     icon: SettingIcon,
     variants: {
