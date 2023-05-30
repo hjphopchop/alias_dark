@@ -1,15 +1,12 @@
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import CreateTeamForm from '../forms/CreateTeamForm';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useTeamsContext } from '@/providers/TeamsProvider';
-import { CloseIcon } from '@/assets/icons/icons';
 import TeamsList from './TeamsList';
 
 const Teams = () => {
   const [isShowForm, setIsShowForm] = useState(false);
   const router = useRouter();
-  const handleNext = (e: any) => {
+  const handleNext = (e: SyntheticEvent) => {
     e.preventDefault();
     router.push('/game/categorySelection');
   };

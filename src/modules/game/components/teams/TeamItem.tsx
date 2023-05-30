@@ -2,9 +2,13 @@ import { CloseIcon } from '@/assets/icons/icons';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import Image from 'next/image';
 import React from 'react';
+import { Team } from '../../types/TeamTypes';
 
-const TeamItem = ({ item }: any) => {
-  const { deleteTeam }: any = useTeamsContext();
+type TeamItemProps = {
+  item: Team;
+};
+const TeamItem = ({ item }: TeamItemProps) => {
+  const { deleteTeam } = useTeamsContext();
   return (
     <li className=" justify-stretch flex flex-col items-center ">
       <div className="relative flex h-[250px] w-[200px] items-end justify-center  overflow-hidden rounded-b-2xl bg-green-400">

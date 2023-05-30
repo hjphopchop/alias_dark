@@ -5,10 +5,16 @@ import { nanoid } from 'nanoid';
 import CustomSelect from '../Teams/CustomSelect';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import { Container } from '@/common/components/Container';
+import { blocks } from 'nexus';
+import { Team } from '../../types/TeamTypes';
 
-const CreateTeamForm = ({ onClose, isActive }: any) => {
+type TeamFormProps = {
+  onClose: (x: boolean) => void;
+  isActive: boolean;
+};
+const CreateTeamForm = ({ onClose, isActive }: TeamFormProps) => {
   const { register, handleSubmit, control } = useForm();
-  const { addTeam }: any = useTeamsContext();
+  const { addTeam } = useTeamsContext();
   const [avatars, setAvatars] = useState([]);
   useEffect(() => {
     axios.get('/api/images/downloadAvatars').then(async ({ data }) => {
