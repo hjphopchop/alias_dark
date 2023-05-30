@@ -1,6 +1,7 @@
 import { HOME } from '@/common/routes';
 
 import { getLayout } from '@/layout/components/DefaultLayout/DefaultLayout';
+import Home from '@/modules/home/components/Home';
 import CreateSettings from '@/modules/settings/graphql/mutation/CreateSettings';
 import GetSettings from '@/modules/settings/graphql/query/GetSettings';
 import { useMutation, useQuery } from '@apollo/client';
@@ -9,7 +10,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const Home = () => {
+const HomePage = () => {
   console.log('я отрисовался))');
   const router = useRouter();
   const { data: session } = useSession();
@@ -37,12 +38,11 @@ const Home = () => {
 
   return (
     <>
-      <div>4443333</div>
-      <button onClick={startGame}>Начать игру</button>
+      <Home />
     </>
   );
 };
-Home.getLayout = getLayout;
-Home.auth = HOME.auth;
+HomePage.getLayout = getLayout;
+HomePage.auth = HOME.auth;
 
-export default Home;
+export default HomePage;

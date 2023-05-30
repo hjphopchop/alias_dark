@@ -10,6 +10,18 @@ import { ApolloProvider } from '@apollo/client';
 import TeamsProvider from '@/providers/TeamsProvider';
 import GameProvider from '@/providers/GameProvider';
 
+import localFont from '@next/font/local';
+const sofia = localFont({
+  src: '../../public/fonts/ZenGothic-Light.ttf',
+  preload: true,
+  variable: '--font-sofia',
+});
+const zaychik = localFont({
+  src: '../../public/fonts/Zaychik-Regular.ttf',
+  preload: true,
+  variable: '--font-zaychik',
+});
+
 type NextPagePropsExtra = {
   initialApolloState: AppInitialState;
   session: Session;
@@ -40,10 +52,14 @@ const App = ({
             <GameProvider>
               {Component.auth ? (
                 <Auth {...Component.auth}>
-                  {getLayout(<Component {...pageProps} />)}
+                  <html className={`${zaychik.variable} ${sofia.variable} `}>
+                    {getLayout(<Component {...pageProps} />)}
+                  </html>
                 </Auth>
               ) : (
-                getLayout(<Component {...pageProps} />)
+                <html className={`${zaychik.variable} ${sofia.variable}  `}>
+                  {getLayout(<Component {...pageProps} />)}
+                </html>
               )}
             </GameProvider>
           </TeamsProvider>
