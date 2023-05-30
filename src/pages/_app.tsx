@@ -52,14 +52,14 @@ const App = ({
             <GameProvider>
               {Component.auth ? (
                 <Auth {...Component.auth}>
-                  <html className={`${zaychik.variable} ${sofia.variable} `}>
+                  <div className={`${zaychik.variable} ${sofia.variable} `}>
                     {getLayout(<Component {...pageProps} />)}
-                  </html>
+                  </div>
                 </Auth>
               ) : (
-                <html className={`${zaychik.variable} ${sofia.variable}  `}>
+                <div className={`${zaychik.variable} ${sofia.variable}  `}>
                   {getLayout(<Component {...pageProps} />)}
-                </html>
+                </div>
               )}
             </GameProvider>
           </TeamsProvider>

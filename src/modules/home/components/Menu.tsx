@@ -1,10 +1,3 @@
-import {
-  NewGameIcon,
-  RulesIcon,
-  SettingIcon,
-} from '@/assets/icons/layoutIcons';
-import { signOut } from 'next-auth/react';
-import Link from 'next/link';
 import React from 'react';
 import { MenuRoute, menuRoutes } from '../menuRoutes';
 import MenuItem from './MenuItem';

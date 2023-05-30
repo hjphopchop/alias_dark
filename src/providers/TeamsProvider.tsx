@@ -40,6 +40,10 @@ const TeamsProvider = ({ children }: any) => {
     setTeams(updatedTeams);
   };
 
+  const reorderTeams = (teams: any) => {
+    setTeams(teams);
+  };
+
   const resetPoints = () => {
     const updatedTeams = teams.map((team: any) => {
       team.points = 0;
@@ -54,6 +58,7 @@ const TeamsProvider = ({ children }: any) => {
     deleteTeam,
     changePoints,
     resetPoints,
+    reorderTeams,
   };
   return (
     <TeamsContext.Provider value={contextValue}>

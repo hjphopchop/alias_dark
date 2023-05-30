@@ -1,19 +1,13 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import CustomSelect from '../teams/CustomSelect';
+import CustomSelect from '../Teams/CustomSelect';
 import { useTeamsContext } from '@/providers/TeamsProvider';
 import { Container } from '@/common/components/Container';
 
 const CreateTeamForm = ({ onClose, isActive }: any) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const { addTeam }: any = useTeamsContext();
   const [avatars, setAvatars] = useState([]);
   useEffect(() => {
