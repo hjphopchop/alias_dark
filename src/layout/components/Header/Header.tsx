@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '@/assets/img/logo2.svg';
 import Image from 'next/image';
-import { BurgerIcon, HomeIcon, LogoutIcon } from '@/assets/icons/layoutIcons';
+import { BurgerIcon, HomeIcon, LogoutIcon } from '@/assets/icons/icons';
 import { motion, Variants } from 'framer-motion';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';

@@ -17,13 +17,13 @@ const GameSession = ({ setPlayerIndex, playerIndex, settingsData }: any) => {
     removeWord(words[words.length - 1]);
     isEndTimer && setPlayerIndex((prev: number) => ++prev);
     if (settingsData.takeAwayPoints) {
-      changePoints(teams[playerIndex].title, -1);
+      changePoints(teams[playerIndex].id, -1);
     }
     isEndTimer && setIsEndGame(false);
   };
   const nextWord = () => {
     removeWord(words[words.length - 1]);
-    changePoints(teams[playerIndex].title, 1);
+    changePoints(teams[playerIndex].id, 1);
     isEndTimer && setPlayerIndex((prev: number) => ++prev);
     isEndTimer && setIsEndGame(false);
   };

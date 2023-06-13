@@ -1,9 +1,4 @@
-import { Variants } from 'framer-motion';
-import {
-  NewGameIcon,
-  RulesIcon,
-  SettingIcon,
-} from '@/assets/icons/layoutIcons';
+import { NewGameIcon, RulesIcon, SettingIcon } from '@/assets/icons/icons';
 
 export type MenuRoute = {
   title: string;

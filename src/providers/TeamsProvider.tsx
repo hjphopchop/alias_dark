@@ -1,12 +1,29 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Team } from '@/modules/game/types/TeamTypes';
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
-const TeamsContext = createContext({});
-
-const TeamsProvider = ({ children }: any) => {
-  const [teams, setTeams] = useState<any>([]);
+const TeamsContext = createContext({} as ITeamContext);
+type TeamsProviderProps = {
+  children: React.ReactNode;
+};
+interface ITeamContext {
+  teams: Team[];
+  addTeam: (newTeam: Team) => void;
+  deleteTeam: (id: string) => void;
+  changePoints: (id: string, changeValue: number) => void;
+  reorderTeams: (teams: Team[]) => void;
+  resetPoints: () => void;
+}
+const TeamsProvider = ({ children }: TeamsProviderProps) => {
+  const [teams, setTeams] = useState<Team[]>([]);
   useEffect(() => {
     try {
-      const teamsData: any = localStorage.getItem('teams');
+      const teamsData: string | null = localStorage.getItem('teams');
 
       if (teamsData) {
         setTeams(JSON.parse(teamsData));
@@ -20,7 +37,7 @@ const TeamsProvider = ({ children }: any) => {
     localStorage.setItem('teams', JSON.stringify(teams));
   }, [teams]);
 
-  const addTeam = (newTeam: any) => {
+  const addTeam = (newTeam: Team) => {
     setTeams([...teams, newTeam]);
   };
 
@@ -30,9 +47,9 @@ const TeamsProvider = ({ children }: any) => {
     );
   };
 
-  const changePoints = (teamTitle: any, changeValue: any) => {
+  const changePoints = (id: string, changeValue: number) => {
     const updatedTeams = teams.map((team: any) => {
-      if (team.title === teamTitle) {
+      if (team.id === id) {
         return { ...team, points: team.points + changeValue };
       }
       return team;
@@ -40,8 +57,12 @@ const TeamsProvider = ({ children }: any) => {
     setTeams(updatedTeams);
   };
 
+  const reorderTeams = (teams: Team[]) => {
+    setTeams(teams);
+  };
+
   const resetPoints = () => {
-    const updatedTeams = teams.map((team: any) => {
+    const updatedTeams = teams.map((team: Team) => {
       team.points = 0;
       return { ...team };
     });
@@ -54,6 +75,7 @@ const TeamsProvider = ({ children }: any) => {
     deleteTeam,
     changePoints,
     resetPoints,
+    reorderTeams,
   };
   return (
     <TeamsContext.Provider value={contextValue}>

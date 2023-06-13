@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MenuRoute } from '../menuRoutes';
 
 import { motion } from 'framer-motion';
@@ -10,10 +10,7 @@ type MenuItemProps = {
 
 const MenuItem = ({ route }: MenuItemProps) => {
   const [isHover, setHover] = useState(false);
-  //   const variants = {
-  //     hover: { rotate: 20 },
-  //     noHover: { rotate: 0 },
-  //   };
+
   return (
     <li
       onMouseEnter={() => setHover(true)}
